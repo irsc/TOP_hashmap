@@ -1,6 +1,7 @@
-import './hashmap';
+import {HashMap} from './hashmap';
 
 const test = new HashMap() // or HashMap() if using a factory
+console.log(test.hash('appleereererer'));
 
 test.set('apple', 'red')
 test.set('banana', 'yellow')
@@ -15,6 +16,7 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
+console.log(test);
 
 /* After populating your hash map with the data above, your hash map’s actual 
 capacity should now be at 0.75 (full capacity).
