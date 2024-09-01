@@ -33,6 +33,15 @@ export class HashMap {
     }
 
     get(key){
+      let index = this.hash(key);
+      if(index){
+        let existingList = this.buckets[index];
+        let indexKey = existingList.findKey(key);
+        return existingList.at(indexKey).value[key]
+        
+      }else{
+          return null;
+      }
 
     }
 
