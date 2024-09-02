@@ -69,31 +69,31 @@ export class LinkedList{
         }
     }
     //contains(value) returns true if the passed in value is in the list and otherwise returns false.
-    contains(value){
+    /* contains(value){
         for (let index = 0; index < this.getSize(); index++) {
             if(this.at(index).value == value){
                 return true;
             }
         }
         return false;
-    }
+    } */
     containsKey(key){
         for (let index = 0; index < this.getSize(); index++) {
-            if(this.at(index).value[key]){
+            if(this.at(index).value[key] != undefined){
                 return true;
             }
         }
         return false;
     }
     //find(value) returns the index of the node containing value, or null if not found.
-    find(value){
+   /*  find(value){
         for (let index = 0; index < this.getSize(); index++) {
             if(this.at(index).value == value){
                 return index;
             }
         }
         return null;
-    }
+    } */
     findKey(key){
         for (let index = 0; index < this.getSize(); index++) {
             if(Object.keys(this.at(index).value) == key){
@@ -155,7 +155,13 @@ export class LinkedList{
     }
 
     updateValue(key, value){
-        
+        let index = this.findKey(key);
+        if(index>=0){
+            let nodeAtIndex =  this.at(index);
+            nodeAtIndex.value = {[key]:value};
+        }else{
+            return null;
+        }
     }
 }
 
