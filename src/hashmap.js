@@ -17,7 +17,8 @@ export class HashMap {
         }
         return hashCode % bucketsLength;
       } 
-
+    // Takes two arguments, the first is a key and the second is a value that is assigned to this key. 
+    // If a key already exists, then the old value is overwritten or we can say that we update the key’s value
     set(key, value){
           let index = this.hash(key);
           let activeBucket = this.buckets[index];
@@ -33,8 +34,19 @@ export class HashMap {
               newList.append({[key]:value});
               this.buckets[index] = newList;
           }
+          this.checkBucketGrowth();
     }
 
+    checkBucketGrowth(){
+        let numberOfEntries = 0;
+        if(this.capacity*this.loadFactor < numberOfEntries){
+          let extraBuckets = Array.apply(null, Array(this.capacity)).map(function () { });
+          this.buckets =  this.buckets.concat(extraBuckets);
+      }
+    }
+
+    // Takes one argument as a key and returns the value that is assigned to this key. 
+    //If a key is not found, return null.
     get(key){
       let index = this.hash(key);
       if(index >= 0){
@@ -47,6 +59,7 @@ export class HashMap {
       }
     }
 
+    //Takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
     has(key){
       let bucket = this.buckets[this.hash(key)];
       if(bucket != undefined){
@@ -54,4 +67,6 @@ export class HashMap {
       }
       return false;
     }
+
+
 }
