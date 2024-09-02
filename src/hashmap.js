@@ -38,9 +38,9 @@ export class HashMap {
     }
 
     checkBucketGrowth(){
-        let numberOfEntries = 0;
+        let entries = this.entries();
+        let numberOfEntries = entries.length;
         if(this.capacity*this.loadFactor < numberOfEntries){
-            let entries = this.entries();
             this.capacity = this.capacity * 2;
             this.buckets = Array.apply(null, Array(this.capacity)).map(function () { });
             entries.forEach(node => {
@@ -54,8 +54,8 @@ export class HashMap {
     //If a key is not found, return null.
     get(key){
         let index = this.hash(key);
-        if(index >= 0){
-            let existingList = this.buckets[index];
+        let existingList = this.buckets[index];
+        if(index >= 0 && existingList != undefined){
             let indexKey = existingList.findKey(key);
             return existingList.at(indexKey).value[key];
           
@@ -79,6 +79,10 @@ export class HashMap {
           let existingList = this.buckets[this.hash(key)];
           let indexKey = existingList.findKey(key);
           existingList.removeAt(indexKey);
+          if(existingList.getSize() == 0){
+            this.buckets[this.hash(key)] = undefined;
+          }
+          console.log(`Node with key ${key} removed`);
           return true;
       }else{
         return false;
@@ -128,6 +132,10 @@ export class HashMap {
           }
       });
         return entries;
+    }
+
+    getFillingLevel(){
+      return this.length() / this.capacity;
     }
 
 }

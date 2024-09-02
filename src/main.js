@@ -23,6 +23,7 @@ console.log(test.get('ice cream'));
 console.log(test.keys());
 console.log(test.values());
 console.log(test.entries());
+console.log(test.getFillingLevel());
 
 /* After populating your hash map with the data above, your hash map’s actual 
 capacity should now be at 0.75 (full capacity).
@@ -36,7 +37,17 @@ hence expanding your buckets and growing your hash map):
  */
 test.set('moon', 'silver');
 test.set('jacket', 'yellow');
+test.set('motorbike', 'blue');
+test.set('ballon', 'magenta');
+test.remove("kite");
 console.log(test);
+console.log(test.has('dog'));
+console.log(test.get('ice cream'));
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+console.log(test.length());
+console.log(test.getFillingLevel());
 /* If you have implemented your hash map correctly, the capacity of your 
 new hash map will drop well below your load factor and you will notice that 
 the nodes in your hash map are spread much evenly among your buckets.
@@ -47,3 +58,27 @@ Again, this should only over-write existing values of your nodes.
 Test the other methods of your hash maps such as 
 get(key), has(key), remove(key), length(), clear(), keys(), values(), and entries() 
 to check if they are still working as expected after expanding your hash map. */
+test.set('hat', 'red');
+test.set('apple', 'green');
+test.set('cat', 'orange');
+test.set('cloud', 'lightgray');
+test.remove('motorbike');
+
+console.log(test);
+console.log(test.has('kite'));
+console.log(test.has('motorbike'));
+console.log(test.get('ice cream'));
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+console.log(test.length());
+console.log(test.getFillingLevel());
+
+//test.clear();
+console.log(test);
+console.log(test.has('kite'));
+console.log(test.get('ice cream'));
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+console.log(test.length());
