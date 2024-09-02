@@ -163,6 +163,22 @@ export class LinkedList{
             return null;
         }
     }
+
+    getKeys(){
+        let arrayKeys = [];
+        for (let index = 0; index < this.getSize(); index++) {
+            arrayKeys.push(Object.keys(this.at(index).value));
+        }
+        return arrayKeys;
+    }
+
+    getValues(){
+        let arrayValues = [];
+        for (let index = 0; index < this.getSize(); index++) {
+            arrayValues.push(Object.values(this.at(index).value));
+        }
+        return arrayValues;
+    }
 }
 
 class Node{
