@@ -1,8 +1,10 @@
 import { LinkedList } from './linkedList';
 
 export class HashMap {
-    constructor(){
-        this.buckets = Array.apply(null, Array(16)).map(function () { });
+    constructor(arraySize = 16, loadfactor = 0.75){
+        this.buckets = Array.apply(null, Array(arraySize)).map(function () { });
+        this.capacity = this.buckets.length;
+        this.loadFactor = loadfactor;
     }
 
     hash(key) {
