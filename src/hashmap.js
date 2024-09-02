@@ -40,9 +40,13 @@ export class HashMap {
     checkBucketGrowth(){
         let numberOfEntries = 0;
         if(this.capacity*this.loadFactor < numberOfEntries){
-            let extraBuckets = Array.apply(null, Array(this.capacity)).map(function () { });
-            this.buckets = this.buckets.concat(extraBuckets);
-            this.capacity = this.buckets.length;
+            let entries = this.entries();
+            this.capacity = this.capacity * 2;
+            this.buckets = Array.apply(null, Array(this.capacity)).map(function () { });
+            entries.forEach(node => {
+                this.set(node[0], node[1]);
+            });
+            console.log("Number of entries requires the number of buckets to grow. Buckets have been doubled.")
       }
     }
 
@@ -99,7 +103,7 @@ export class HashMap {
         let arrayKeys = [];
         this.buckets.forEach(bucket => {
             if(bucket != undefined){
-                arrayKeys.concat(bucket.getKeys());
+                arrayKeys = arrayKeys.concat(bucket.getKeys());
             }
         });
         return arrayKeys;
@@ -109,7 +113,7 @@ export class HashMap {
       let arrayValues = [];
       this.buckets.forEach(bucket => {
           if(bucket != undefined){
-              arrayValues.concat(bucket.getValues());
+              arrayValues = arrayValues.concat(bucket.getValues());
           }
       });
       return arrayValues;
@@ -117,7 +121,13 @@ export class HashMap {
     // Returns an array that contains each key, value pair. 
     //Example: [[firstKey, firstValue], [secondKey, secondValue]]
     entries(){
-
+        let entries = [];
+        this.buckets.forEach(bucket => {
+          if(bucket != undefined){
+              entries = entries.concat(bucket.getNode());
+          }
+      });
+        return entries;
     }
 
 }

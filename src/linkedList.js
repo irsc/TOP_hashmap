@@ -167,7 +167,7 @@ export class LinkedList{
     getKeys(){
         let arrayKeys = [];
         for (let index = 0; index < this.getSize(); index++) {
-            arrayKeys.push(Object.keys(this.at(index).value));
+            arrayKeys = arrayKeys.concat(Object.keys(this.at(index).value));
         }
         return arrayKeys;
     }
@@ -175,9 +175,17 @@ export class LinkedList{
     getValues(){
         let arrayValues = [];
         for (let index = 0; index < this.getSize(); index++) {
-            arrayValues.push(Object.values(this.at(index).value));
+            arrayValues = arrayValues.concat(Object.values(this.at(index).value));
         }
         return arrayValues;
+    }
+    getNode(){
+        let arrayNodes = [];
+        for (let index = 0; index < this.getSize(); index++) {
+            let node = Object.keys(this.at(index).value).concat(Object.values(this.at(index).value));
+            arrayNodes.push(node);
+        }
+        return arrayNodes;
     }
 }
 

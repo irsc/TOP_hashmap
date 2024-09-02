@@ -1,7 +1,6 @@
 import {HashMap} from './hashmap';
 
 const test = new HashMap() // or HashMap() if using a factory
-console.log(test.hash('appleereererer'));
 
 test.set('apple', 'red')
 test.set('banana', 'yellow')
@@ -17,6 +16,13 @@ test.set('kite', 'pink')
 test.set('lion', 'golden')
 
 console.log(test);
+console.log(test.hash('apple'));
+console.log(test.hash('grape'));
+console.log(test.has('dog'));
+console.log(test.get('ice cream'));
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
 
 /* After populating your hash map with the data above, your hash map’s actual 
 capacity should now be at 0.75 (full capacity).
@@ -28,7 +34,9 @@ After that, populate your hash map with the last node below
 (doing this will make your hash map exceed your current load factor, 
 hence expanding your buckets and growing your hash map):
  */
- test.set('moon', 'silver')
+test.set('moon', 'silver');
+test.set('jacket', 'yellow');
+console.log(test);
 /* If you have implemented your hash map correctly, the capacity of your 
 new hash map will drop well below your load factor and you will notice that 
 the nodes in your hash map are spread much evenly among your buckets.
